@@ -32,6 +32,7 @@
           :class="{ active: index === 0 }"
           aria-current="true"
           :aria-label="'Slide ' + (index + 1)"
+          :data-repo="repo"
         ></button>
       </div>
 
