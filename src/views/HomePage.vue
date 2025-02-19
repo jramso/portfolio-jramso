@@ -24,7 +24,7 @@
       <!-- Indicadores -->
       <div class="carousel-indicators">
         <button
-          v-for="(repo, index) in reposDestaque"
+          v-for="(index) in reposDestaque"
           :key="index"
           type="button"
           :data-bs-target="'#reposSlider'"
