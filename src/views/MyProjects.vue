@@ -61,8 +61,5 @@ const getIcon = (language: string | null) => {
     text-decoration: none;
     color: #007bff;
   }
-  .language-icon {
-    width: 40px;
-    height: 40px;
-  }
+
   </style>
