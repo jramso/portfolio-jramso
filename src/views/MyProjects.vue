@@ -26,7 +26,7 @@
   import { ref, onMounted } from 'vue';
   
   const repositorios = ref<any[]>([]);
-  const GITHUB_TOKEN = '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';
+const GITHUB_TOKEN = import.meta.env.VUE_APP_GITHUB_TOKEN;
   const icones: Record<string, string> = {
   JavaScript: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
   TypeScript: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg',
