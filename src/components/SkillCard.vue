@@ -5,7 +5,7 @@
       <div v-for="(category, index) in skillCategories" :key="index">
         <h3>{{ category.title }}</h3>
         <div class="skills-grid">
-          <div v-for="skill in category.skills" :key="skill.name" class="hexagon">
+          <div v-for="skill in category.skills" :key="skill.name" class="pentagon">
             <img :src="skill.icon" :alt="skill.name" />
             <span>{{ skill.name }}</span>
           </div>
@@ -70,29 +70,42 @@
     color: #333;
   }
   
-  .hexagon {
-    width: 80px;
-    height: 92px;
+.pentagon {
+    width: 100px;
+    height: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #5ac3fb;
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background-color: #474747; /* Cor do fundo do bloco */
+    clip-path: polygon(
+        50% 0%, 100% 38%, 82% 100%, 
+        18% 100%, 0% 38%
+    );
     color: white;
     font-size: 14px;
     font-weight: bold;
     text-align: center;
-    padding: 10px;
-    transition: transform 0.2s;
+    position: relative;
+}
+
+  .pentagon::after {
+      content: "";
+      width: 80%;
+      height: 4px;
+      background-color: #8218fb; /* Cor da linha */
+      position: absolute;
+      bottom: 0px; /* Ajusta a posição da linha */
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
   }
-  
-  .hexagon img {
+  .pentagon img {
     width: 40px;
     height: 40px;
   }
   
-  .hexagon:hover {
+  .pentagon:hover {
     transform: scale(1.1);
     background-color: #0056b3;
   }

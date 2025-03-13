@@ -8,27 +8,28 @@
       <button
         class="navbar-toggler"
         type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
+         @click="toggleMenu"
+         :class="{ 'collapsed': !isMenuOpen }"
+          :aria-expanded="isMenuOpen ? 'true' : 'false'"
         aria-controls="navbarNav"
-        aria-expanded="false"
+        
         aria-label="Toggle navigation"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
+      <div class="collapse navbar-collapse justify-content-between" :class="{ show: isMenuOpen }" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link class="nav-link" to="/">Home</router-link>
+            <router-link class="nav-link" to="/"  @click="fecharMenu">Home</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/sobre">Sobre Mim</router-link>
+            <router-link class="nav-link" to="/sobre"  @click="fecharMenu">Sobre Mim</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/repos">Repositórios</router-link>
+            <router-link class="nav-link" to="/repos"  @click="fecharMenu">Repositórios</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/contato">Contato</router-link>
+            <router-link class="nav-link" to="/contato"  @click="fecharMenu">Contato</router-link>
           </li>
         </ul>
         <!-- Botão de alternância do tema -->
@@ -44,11 +45,20 @@
 import { ref, onMounted } from "vue";
 
 const isDark = ref(false);
+const isMenuOpen = ref(false);
 
 const toggleDarkMode = () => {
   isDark.value = !isDark.value;
   document.body.classList.toggle("dark-mode", isDark.value);
   localStorage.setItem("theme", isDark.value ? "dark" : "light");
+};
+
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value;
+};
+
+const fecharMenu = () => {
+  isMenuOpen.value = false;
 };
 
 onMounted(() => {

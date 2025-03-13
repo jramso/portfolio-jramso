@@ -87,7 +87,7 @@ const icones: Record<string, string> = {
 };
 
 const reposDestaque = ref<any[]>([]);
-const destaques = ['jramso.github.io', 'AppVueBanhoTosa', 'AgendamentoBanhoETosa'];
+const destaques = ['AppVueBanhoTosa', 'AgendamentoBanhoETosa','TrabPthreads'];
 
 const getIcon = (repo: any) => {
   const language = repo.language;
@@ -120,11 +120,19 @@ onMounted(async () => {
 <style scoped>
 /* Estilizando os cards do slider */
 .repo-card {
-  width: 60%;
+  width: 70%;
+  max-width: 500px;
   border: 1px solid #ddd;
   text-align: center;
   transition: transform 0.3s ease-in-out;
 }
+
+@media (max-width: 576px) {
+  .repo-card {
+    width: 90%; /* Dá mais espaço pro conteúdo em telas pequenas */
+  }
+}
+
 
 .repo-card:hover {
   transform: scale(1.05);
@@ -200,5 +208,12 @@ onMounted(async () => {
 .custom-arrow {
   width: 30px;
   height: 30px;
+}
+
+@media (max-width: 768px) {
+  .carousel-control-prev,
+  .carousel-control-next {
+    display: none;
+  }
 }
 </style>
