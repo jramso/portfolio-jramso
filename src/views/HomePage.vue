@@ -53,7 +53,7 @@
 import { ref, onMounted } from 'vue';
 import SkillCard from '../components/SkillCard.vue';
 
-const GITHUB_TOKEN = import.meta.env.VUE_APP_GITHUB_TOKEN;// Efeito de digitação
+const GITHUB_TOKEN = import.meta.env.VUEAPP_GITHUB_SECRET;// Efeito de digitação
 const textoCompleto = 'Oi, meu nome é Josué e bem-vindo ao meu Portfólio!';
 const textoDigitado = ref('');
 const exibirCursor = ref(true);
