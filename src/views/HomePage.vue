@@ -52,6 +52,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import SkillCard from '../components/SkillCard.vue';
+
+const GITHUB_TOKEN = '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';
 // Efeito de digitação
 const textoCompleto = 'Oi, meu nome é Josué e bem-vindo ao meu Portfólio!';
 const textoDigitado = ref('');
@@ -108,7 +110,11 @@ const getIcon = (repo: any) => {
 
 onMounted(async () => {
   try {
-    const response = await fetch('https://api.github.com/users/jramso/repos');
+    const response = await fetch('https://api.github.com/users/jramso/repos', {
+      headers: {
+        Authorization: `token ${GITHUB_TOKEN}`,
+      },
+    });
     const repos = await response.json();
     reposDestaque.value = repos.filter((repo: any) => destaques.includes(repo.name));
   } catch (error) {

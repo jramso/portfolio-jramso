@@ -26,7 +26,7 @@
   import { ref, onMounted } from 'vue';
   
   const repositorios = ref<any[]>([]);
-  
+  const GITHUB_TOKEN = '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';
   const icones: Record<string, string> = {
   JavaScript: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
   TypeScript: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg',
@@ -73,20 +73,28 @@ const getColorForLanguage = (language: string) => {
     case 'c#':
       return '#178600'; // Verde escuro para C#
     default:
-      return '#ffffff'; // Branco como padrão
+      return '#585858'; // Branco como padrão
   }
 };
   
  onMounted(async () => {
   try {
-    const response = await fetch('https://api.github.com/users/jramso/repos');
+    const response = await fetch('https://api.github.com/users/jramso/repos', {
+      headers: {
+        Authorization: `token ${GITHUB_TOKEN}`,
+      },
+    });
     const data = await response.json();
 
     // Usar Promise.all para lidar com as chamadas assíncronas dentro do map
     const reposWithTags = await Promise.all(
       data.map(async (repo: any) => {
         const languagesResponse = repo.languages_url
-          ? await fetch(repo.languages_url)
+          ? await fetch(repo.languages_url, {
+              headers: {
+                Authorization: `token ${GITHUB_TOKEN}`,
+              },
+            })
           : null;
         const languages = languagesResponse
           ? await languagesResponse.json()
